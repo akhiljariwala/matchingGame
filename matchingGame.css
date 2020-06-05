@@ -1,0 +1,88 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Grid display to center the major elements of the webpage */
+body {
+    margin: 20px 0;
+    background: #6589F9;
+    display: grid; 
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto auto;
+}
+
+h1 {
+    font-family: cursive;
+}
+
+#Main {
+    text-align: center;
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+
+/* The main space the game is played. Sections containing individual cards are placed inside the game board */
+#gameBoard {
+    align-self: center;
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+
+/* The game board that the game sits on*/
+.grid {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/* Introduces card flipping animation */
+.card {
+    position: relative;
+    transition: all .4s linear;
+    transform-style: preserve-3d;
+    margin: 5px;
+}
+
+.card,
+.back,
+.front {
+  height: 150px;
+  width: 150px;
+}
+
+.back,
+.front {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+/* The front of the card, which is the blank side facing the user at the start */
+.front {
+    z-index: 2;
+    background: #FAB942 no-repeat center center / contain;
+}
+
+/* The face side of the card, with the image */
+.back {
+    transform: rotateY(180deg);
+    /* Face side background set to blend in with the background */
+    background-color: #6589F9;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/* Flips the card when selected */
+.selected {
+    transform: rotateY(180deg);
+}
+
+/* Changes matched cards' backgrounds to blend in to give 
+the appearance of disappearing */
+.match .front {
+    background: #6589F9 !important;
+}
